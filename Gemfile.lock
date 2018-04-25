@@ -1,0 +1,39 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    childprocess (0.9.0)
+      ffi (~> 1.0, >= 1.0.11)
+    diff-lcs (1.3)
+    ffi (1.9.23)
+    mysql2 (0.4.10)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
+    ruby-graphviz (1.2.3)
+    rubyzip (1.2.1)
+    selenium-webdriver (3.11.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ffi
+  mysql2 (= 0.4.10)
+  rspec (= 3.7.0)
+  ruby-graphviz
+  selenium-webdriver
+
+BUNDLED WITH
+   1.16.1
