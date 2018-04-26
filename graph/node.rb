@@ -1,64 +1,58 @@
-$stack = []
-
 class Node
-  attr_accessor :name, :children
+  attr_accessor :value, :left, :right, :name
 
-  def initialize(name)
-    @name = name
-    @children = []
-    @visited = 0
-    #@stack = []
+  def initialize(options={})
+    @value = options[:value]
+    @name = options[:name]
   end
 
-  def mark
-    @visited = @visited + 1
+  def children
+    [@left, @right].compact
   end
 
-  def check_children
-    $stack.push(self.name)
-    # p 'current stack'
-    # p $stack
-    if @visited > 0
-      p 'reached backedge'
-      p $stack
-      $stack.pop
-      $stack.pop
-      return
-    end
-    if @children.empty?
-      p 'reached leaf'
-      p $stack
-      $stack.pop
-      return
-    end
-    @children.each do |child|
-      child.check_children
-    end
-    mark
+  def children?
+    @left && @right
   end
 
-  def add_child(node)
-    @children.push(node)
+  def no_children?
+    !children?
   end
 end
 
+root = Node.new({:value => 1, :name => 'root'})
+child_1 = Node.new({:value => 2, :name => 'child_1'})
+child_2 = Node.new({:value => 3, :name => 'child_2'})
+grand_child_2 = Node.new({:value => 6, :name => 'grand_child_2'})
+grand_child_1 = Node.new({:value => 4, :name => 'grand_child_1'})
+grand_grand_child_1 = Node.new({:value => 5, :name => 'grand_grand_child_1'})
+grand_child_1.left = grand_grand_child_1
+child_1.left = grand_child_1
+child_1.right = grand_child_2
+root.left = child_1
+root.right = child_2
 
-node1 = Node.new('node1')
-node2 = Node.new('node2')
-node3 = Node.new('node3')
-node4 = Node.new('node4')
-node5 = Node.new('node5')
-node6 = Node.new('node6')
-node7 = Node.new('node7')
+def bfs(node)
+  queue = []
+  queue.push(node)
 
+  while(queue.size != 0)
+    n = queue.shift
+    puts n.value
+    n.children.each do |child|
+      queue.push(child)
+    end
+  end
+end
 
-node1.add_child(node2)
-node1.add_child(node3)
-node2.add_child(node4)
-node2.add_child(node7)
-node3.add_child(node5)
-node5.add_child(node6)
+bfs(root)
 
+puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 
+def dfs(node)
+  puts node.value
+  node.children.each do |child|
+    dfs(child)
+  end
+end
 
-node1.check_children
+dfs(root)
