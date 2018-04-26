@@ -22,14 +22,25 @@ class Graph
 
 end
 
+#
+#           (a)
+#          / | \
+#        (b)(c)(d)
+#       /  \
+#     (e) (f)
+#           \
+#          (g)
+#
+
 g2 = Graph.new
-g2.add_edge('a', 'e')
-g2.add_edge('e', 'b')
-g2.add_edge('e', 'f')
-g2.add_edge('f', 'b')
+g2.add_edge('a', 'b')
 g2.add_edge('a', 'c')
-g2.add_edge('c', 'b')
+g2.add_edge('a', 'd')
+g2.add_edge('b', 'e')
+g2.add_edge('b', 'f')
+g2.add_edge('f', 'g')
+g2.add_edge('c', 'f')
 p g2.graph
-g2.find_paths('a', 'b', []) { |path|
+g2.find_paths('a', 'f', []) { |path|
   puts "path : #{path.join(", ")} / len=#{path.size}"
 }
