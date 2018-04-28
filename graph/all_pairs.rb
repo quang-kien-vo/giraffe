@@ -33,7 +33,7 @@ end
 #           (a)
 #          / | \
 #        (b)(c)(d)
-#       /  \
+#       /  \ / _/
 #     (e) (f)
 #           \
 #          (g)
@@ -51,8 +51,9 @@ g2.add_edge('d', 'f')
 
 all_paths = []
 
-g2.find_paths('a', 'g', []) {|path| all_paths.push(path)}
+g2.find_paths('a', 'b', []) {|path| all_paths.push(path)}
 p all_paths
+p g2.graph
 
 p "--------------------------"
 
