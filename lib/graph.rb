@@ -10,6 +10,7 @@ class Graph
   end
 
   def add_edge(source, destination, function, label = nil)
+
     @graph[source] << destination
     @graph[destination] << source
 
@@ -40,33 +41,9 @@ class Graph
       find_paths(v, destination, result, &bl) unless result.include?(v)
     end
   end
-
 end
 
-#
-#           (a)
-#          / | \
-#        (b)(c)(d)
-#       /  \ / _/
-#     (e) (f)
-#           \
-#          (g)
-#
 
-g2 = Graph.new
-g2.add_edge('a', 'b', true, "clicked on paper")
-g2.add_edge('a', 'c',true)
-g2.add_edge('a', 'd',true)
-g2.add_edge('b', 'e',true)
-g2.add_edge('b', 'f',true)
-g2.add_edge('f', 'g',true)
-g2.add_edge('c', 'f',true)
-g2.add_edge('d', 'f',true)
 
-p "=============================="
-p g2.adj_matrix
-p "/////////////////////////////"
-all_paths = g2.find_all_paths_from_node('a')
-p all_paths
 
 
