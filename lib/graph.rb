@@ -9,11 +9,14 @@ class Graph
     @adj_matrix = Hash.new
   end
 
-  def add_edge(source, destination, function)
+  def add_edge(source, destination, function, label = nil)
     @graph[source] << destination
     @graph[destination] << source
+
     @adj_matrix[source] = {} if @adj_matrix[source].eql? nil
-    @adj_matrix[source][destination] = function
+    @adj_matrix[source][destination] = {} if @adj_matrix[source][destination].eql? nil
+    @adj_matrix[source][destination]['function'] = function
+    @adj_matrix[source][destination]['label'] = label
   end
 
   def find_all_paths_from_node(source)
@@ -51,7 +54,7 @@ end
 #
 
 g2 = Graph.new
-g2.add_edge('a', 'b', true)
+g2.add_edge('a', 'b', true, "clicked on paper")
 g2.add_edge('a', 'c',true)
 g2.add_edge('a', 'd',true)
 g2.add_edge('b', 'e',true)
