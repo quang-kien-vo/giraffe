@@ -1,14 +1,6 @@
-require_relative '../model_builder'
+require_relative '../lib/graph'
 
-model = ModelBuilder.new
-model.add_node('Start')
-model.add_node('Squad Planning Meeting')
-model.add_node('QA Starts Ephemeral Environment')
-model.add_node('Tickets Ready For QA')
-model.add_node('Tickets Accepted')
-model.add_node('Tickets Merged To Staging')
-model.add_node('Tickets Merged To Prod')
-model.add_node('Tickets Closed')
+model = Graph.new
 
 model.add_edge('Start', 'Squad Planning Meeting', nil)
 model.add_edge('Squad Planning Meeting', 'QA Starts Ephemeral Environment', nil, 'Team Coordinates Which Tickets Go Into Release Train')
@@ -18,4 +10,4 @@ model.add_edge('Tickets Accepted', 'Tickets Merged To Staging', nil, "QA Functio
 model.add_edge('Tickets Merged To Staging', 'Tickets Merged To Prod', nil, "QA Regression Suite Passes")
 model.add_edge('Tickets Merged To Prod', 'Tickets Closed', nil)
 
-model.output_png('output/release.png')
+model.output_model('../output/release.png')

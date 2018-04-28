@@ -1,4 +1,3 @@
-require_relative 'node'
 require 'graphviz'
 
 class Graph
@@ -7,6 +6,7 @@ class Graph
   def initialize
     @graph = Hash.new {|hash, key| hash[key] = []}
     @adj_matrix = Hash.new
+    @model = GraphViz.new(:G, type: :digraph)
   end
 
   def add_edge(source, destination, function, label = nil)
@@ -18,6 +18,18 @@ class Graph
     @adj_matrix[source][destination] = {} if @adj_matrix[source][destination].eql? nil
     @adj_matrix[source][destination]['function'] = function
     @adj_matrix[source][destination]['label'] = label
+
+    # @model.add_edge(source, destination, label: label)
+
+    sentinel = function
+
+    if sentinel.eql? true
+      @model.add_edge(source, destination, label: label, color: 'green')
+    elsif sentinel.eql? false
+      @model.add_edge(source, destination, label: label, color: 'red')
+    else
+      @model.add_edge(source, destination, label: label)
+    end
   end
 
   def find_all_paths_from_node(source)
@@ -30,6 +42,10 @@ class Graph
 
   def print_all_nodes
     @graph.keys
+  end
+
+  def output_model(file_name)
+    @model.output(png: file_name)
   end
 
   private
