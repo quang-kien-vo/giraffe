@@ -64,6 +64,8 @@ describe 'creates graph' do
     graph.add_edge('amazon', 'bing', "navigate_to_bing", "navigated to bing")
     # graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
     # graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
+    # graph.add_edge('frys', 'amazon',"navigate_to_amazon", "navigated to amazon")
+    # graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
 
     all_paths = graph.find_all_paths_from_node('start')
     p graph.adj_matrix
@@ -76,6 +78,7 @@ describe 'creates graph' do
       (0..path.length-1).each do |i|
         next if i == path.length-1
         next if graph.adj_matrix[path[i].to_s].eql? nil
+        next if graph.adj_matrix[path[i].to_s][path[i+1].to_s].eql? nil
 
         graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function')
         sentinel = base_page.send(graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function'))

@@ -37,7 +37,7 @@ class Graph
     @graph.keys.each do |iterator|
       find_paths(source, iterator, []) {|path| all_paths.push(path)}
     end
-    all_paths
+    all_paths.uniq
   end
 
   def print_all_nodes
