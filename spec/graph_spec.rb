@@ -91,7 +91,7 @@ describe 'creates graph' do
 
         graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value'] = base_page.send(graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function'))
 
-        p graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value']
+        #p graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value']
 
 
         temp = {}
