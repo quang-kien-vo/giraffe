@@ -15,7 +15,9 @@ TODO:
 - [ ] Package Library As Gem
 - [ ] Get working json model which can be consumed by other visualization libraries
 
-Possible Research:
+Possible Research (Nice to haves):
 - [ ] Other visualization libraries
 - [ ] Realtime updates of graph
+- [ ] Associate tags with edges
+- [ ] Associate microservices with edges
 
