@@ -66,26 +66,32 @@ describe 'creates graph' do
     # graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
     # graph.add_edge('frys', 'amazon',"navigate_to_amazon", "navigated to amazon")
     # graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
+    # graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
 
     all_paths = graph.find_all_paths_from_node('start')
     p graph.adj_matrix
     p all_paths
-    graph.output_model('output/web_navigation.png')
+
     all_paths.each do |path|
       p "path: #{path}"
       next if path.length < 2
 
       (0..path.length-1).each do |i|
-        next if i == path.length-1
-        next if graph.adj_matrix[path[i].to_s].eql? nil
-        next if graph.adj_matrix[path[i].to_s][path[i+1].to_s].eql? nil
+        break if i == path.length-1
+        break if graph.adj_matrix[path[i].to_s].eql? nil
+        break if graph.adj_matrix[path[i].to_s][path[i+1].to_s].eql? nil
 
         graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function')
         sentinel = base_page.send(graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function'))
-        graph.adj_matrix[path[i].to_s][path[i+1].to_s]['pass_fail'] = sentinel
+        graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value'] = sentinel
 
+        # if sentinel.eql? true
+        #   graph.model.add_edge(path[i], path[i+1], color: "green", label: graph.adj_matrix[path[i]][path[i+1]]['label'])
+        # elsif sentinel.eql? false
+        #   graph.model.add_edge(path[i], path[i+1], color: "red", label: graph.adj_matrix[path[i]][path[i+1]]['label'])
+        # end
       end
     end
-
+    graph.output_model('output/web_navigation.png')
   end
 end

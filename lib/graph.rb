@@ -1,7 +1,7 @@
 require 'graphviz'
 
 class Graph
-  attr_accessor :graph, :adj_matrix
+  attr_accessor :graph, :adj_matrix, :model
 
   def initialize
     @graph = Hash.new {|hash, key| hash[key] = []}
