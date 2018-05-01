@@ -30,11 +30,11 @@ describe 'creates graph' do
     graph.add_edge('google', 'amazon',"navigate_to_amazon", "navigated to amazon")
     graph.add_edge('google', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
     graph.add_edge('amazon', 'bing', "navigate_to_bing", "navigated to bing")
-    graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
-    graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
-    graph.add_edge('frys', 'amazon',"navigate_to_amazon", "navigated to amazon")
-    graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
-    graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
+    # graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
+    # graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
+    # graph.add_edge('frys', 'amazon',"navigate_to_amazon", "navigated to amazon")
+    # graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
+    # graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
 
     graph.traverse_graph(base_page, 'example')
 
