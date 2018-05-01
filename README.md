@@ -2,6 +2,8 @@
 
 
 ##Directory Structure
+
+```
     ├── edge_definitions        # stores edge defintions (algorithm to traverse one edge to another)    
     ├── lib                     # main library for generating graphs
     ├── output                  # output files
@@ -12,7 +14,7 @@
     ├── package.json
     ├── .rubocop.yml
     └── .gitignore
-
+```
 
 ---
 Notes:
