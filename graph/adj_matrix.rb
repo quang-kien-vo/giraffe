@@ -16,17 +16,14 @@
 require 'matrix'
 
 def print_hello
-  p "hello"
+  p 'hello'
 end
-
-
-
 
 num_of_nodes = 6
 
-adj_matrix = Matrix.build(num_of_nodes, num_of_nodes) {|row, col| 0}
+adj_matrix = Matrix.build(num_of_nodes, num_of_nodes) { |_row, _col| 0 }
 
-p adj_matrix[2,3]
+p adj_matrix[2, 3]
 
 adj_matrix.element[]
 p adj_matrix

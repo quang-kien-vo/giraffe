@@ -1,7 +1,6 @@
 require_relative '../lib/model/model_builder'
 require 'selenium-webdriver'
 
-
 Selenium::WebDriver::Chrome.driver_path = './chromedriver'
 @driver = Selenium::WebDriver.for :chrome
 

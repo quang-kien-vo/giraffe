@@ -4,7 +4,7 @@ class Graph
   attr_accessor :graph
 
   def initialize
-    @graph = Hash.new {|hash, key| hash[key] = []}
+    @graph = Hash.new { |hash, key| hash[key] = [] }
   end
 
   def add_edge(source, destination)
@@ -12,21 +12,19 @@ class Graph
     @graph[destination] << source
   end
 
-
   def find_paths(source, destination, result, &bl)
-    result = result+[source] # !! copy and add a
+    result += [source] # !! copy and add a
 
-    #p result
-    bl.call(result) if source == destination
+    # p result
+    yield(result) if source == destination
     @graph[source].each do |v|
-      find_paths(v, destination, result, &bl) if !result.include?(v)
+      find_paths(v, destination, result, &bl) unless result.include?(v)
     end
   end
 
   def print_all_nodes
     @graph.keys
   end
-
 end
 
 #
@@ -51,17 +49,16 @@ g2.add_edge('d', 'f')
 
 all_paths = []
 
-g2.find_paths('a', 'b', []) {|path| all_paths.push(path)}
+g2.find_paths('a', 'b', []) { |path| all_paths.push(path) }
 p all_paths
 p g2.graph
 
-p "--------------------------"
+p '--------------------------'
 
 def find_all_paths_from_root(graph)
   graph.graph.keys.each do |iterator|
-
     all_paths = []
-    graph.find_paths('a', iterator, []) {|path| all_paths.push(path)}
+    graph.find_paths('a', iterator, []) { |path| all_paths.push(path) }
     p all_paths
   end
 end

@@ -1,5 +1,19 @@
 #TBA
 
+
+##Directory Structure
+├── edge_definitions      
+├── lib
+├── output
+├── page_objects
+├── spec
+├── Gemfile
+├── README.md
+├── package.json
+├── .rubocop.yml
+└── .gitignore
+
+
 ---
 Notes:
 * Right now most of the usable code is in lib/graph.rb

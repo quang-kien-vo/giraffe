@@ -6,13 +6,12 @@ class Graph
   attr_accessor :graph, :adj_matrix, :model
 
   def initialize
-    @graph = Hash.new {|hash, key| hash[key] = []}
-    @adj_matrix = Hash.new
+    @graph = Hash.new { |hash, key| hash[key] = [] }
+    @adj_matrix = {}
     @model = GraphViz.new(:G, type: :digraph)
   end
 
   def add_edge(source, destination, function, label = nil)
-
     @graph[source] << destination
     @graph[destination] << source
 
@@ -34,8 +33,8 @@ class Graph
 
   def find_all_paths_from_node(source)
     all_paths = []
-    @graph.keys.each do |iterator|
-      find_paths(source, iterator, []) {|path| all_paths.push(path)}
+    @graph.each_key do |iterator|
+      find_paths(source, iterator, []) { |path| all_paths.push(path) }
     end
     all_paths.uniq
   end
@@ -49,19 +48,19 @@ class Graph
       p "path: #{path}"
       next if path.length < 2
 
-      (0..path.length-1).each do |i|
-        break if i == path.length-1
+      (0..path.length - 1).each do |i|
+        break if i == path.length - 1
         break if @adj_matrix[path[i]].eql? nil
-        break if @adj_matrix[path[i]][path[i+1]].eql? nil
+        break if @adj_matrix[path[i]][path[i + 1]].eql? nil
 
-        @adj_matrix.fetch(path[i]).fetch(path[i+1]).fetch('function')
-        @adj_matrix[path[i]][path[i+1]]['value'] = definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i+1]).fetch('function'))
+        @adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function')
+        @adj_matrix[path[i]][path[i + 1]]['value'] = definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function'))
 
         temp = {}
-        temp["source"] = path[i]
-        temp["destination"] = path[i+1]
-        temp["label"] = @adj_matrix[path[i]][path[i+1]]['label']
-        temp["value"] = @adj_matrix[path[i]][path[i+1]]['value']
+        temp['source'] = path[i]
+        temp['destination'] = path[i + 1]
+        temp['label'] = @adj_matrix[path[i]][path[i + 1]]['label']
+        temp['value'] = @adj_matrix[path[i]][path[i + 1]]['value']
         json_result.push(temp)
       end
     end
@@ -86,15 +85,10 @@ class Graph
   private
 
   def find_paths(source, destination, result, &bl)
-    result = result+[source] # !! copy and add a
-    bl.call(result) if source == destination
+    result += [source] # !! copy and add a
+    yield(result) if source == destination
     @graph[source].each do |v|
       find_paths(v, destination, result, &bl) unless result.include?(v)
     end
   end
 end
-
-
-
-
-

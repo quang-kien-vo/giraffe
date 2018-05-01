@@ -1,5 +1,4 @@
 class Node
-
   attr_reader :name, :successors
 
   def initialize(name)
@@ -14,11 +13,9 @@ class Node
   def to_s
     "#{@name} -> [#{@successors.map(&:name).join(' ')}]"
   end
-
 end
 
 class Graph
-
   def initialize
     @nodes = {}
   end
