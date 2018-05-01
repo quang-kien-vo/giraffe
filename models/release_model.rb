@@ -1,4 +1,4 @@
-require_relative '../lib/graph'
+require_relative '../lib/graph/graph'
 
 model = Graph.new
 
@@ -10,4 +10,4 @@ model.add_edge('Tickets Accepted', 'Tickets Merged To Staging', nil, "QA Functio
 model.add_edge('Tickets Merged To Staging', 'Tickets Merged To Prod', nil, "QA Regression Suite Passes")
 model.add_edge('Tickets Merged To Prod', 'Tickets Closed', nil)
 
-model.output_model('../output/release.png')
+model.output_model('../output/img/release.png')

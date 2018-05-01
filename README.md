@@ -25,5 +25,6 @@ Notes:
 - [ ] Realtime updates of graph
 - [ ] Associate tags with edges
 - [ ] Associate microservices with edges
-- [ ] Add tags to each edge
+- [ ] Add tags to each edges
+- [ ] Combine multiple models into one
 

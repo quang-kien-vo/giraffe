@@ -1,8 +1,7 @@
 require 'rspec'
 require 'json'
-require_relative '../lib/graph'
+require_relative '../lib/giraffe'
 require_relative '../page_objects/base_page'
-require_relative '../graph/model_builder'
 
 describe '.add_edge' do
   let(:graph) {Graph.new}
@@ -12,34 +11,6 @@ describe '.add_edge' do
     expect(graph.adj_matrix).eql?({"a"=>{"b"=>{"function"=>true, "label"=>"clicked on paper"}}})
   end
 end
-
-# describe 'creates graph' do
-#   #
-#   #           (a)
-#   #          / | \
-#   #        (b)(c)(d)
-#   #       /  \ / _/
-#   #     (e) (f)
-#   #           \
-#   #          (g)
-#   #
-#   let(:graph) {Graph.new}
-#
-#   it 'should create the proper hash for adj_matrix' do
-#     graph.add_edge('a', 'b', true, "clicked on paper")
-#     graph.add_edge('a', 'c',true)
-#     graph.add_edge('a', 'd',true)
-#     graph.add_edge('b', 'e',true)
-#     graph.add_edge('b', 'f',true)
-#     graph.add_edge('f', 'g',true)
-#     graph.add_edge('c', 'f',true)
-#     graph.add_edge('d', 'f',true)
-#
-#     all_paths = graph.find_all_paths_from_node('a')
-#     p all_paths
-#   end
-# end
-
 
 describe 'creates graph' do
   #           (start)
@@ -52,11 +23,6 @@ describe 'creates graph' do
 
   let(:graph) {Graph.new}
   let(:base_page) {BasePage.instance}
-  # let(:navigate_to_google) {true}
-  # let(:navigate_to_amazon) {true}
-  # let(:navigate_to_slickdeals) {false}
-  # let(:navigate_to_frys) {true}
-  # let(:navigate_to_bing) {true}
 
   it 'should create the proper img for adj_matrix' do
     graph.add_edge('start', 'google', "navigate_to_google", "navigated to google")
@@ -70,57 +36,7 @@ describe 'creates graph' do
     graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
     graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
 
-    all_paths = graph.find_all_paths_from_node('start')
-    p graph.adj_matrix
-    p all_paths
-
-    @json_test = []
-
-    all_paths.each do |path|
-      p "path: #{path}"
-      next if path.length < 2
-
-      (0..path.length-1).each do |i|
-        break if i == path.length-1
-        break if graph.adj_matrix[path[i].to_s].eql? nil
-        break if graph.adj_matrix[path[i].to_s][path[i+1].to_s].eql? nil
-
-
-
-        graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function')
-
-        graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value'] = base_page.send(graph.adj_matrix.fetch(path[i].to_s).fetch(path[i+1].to_s).fetch('function'))
-
-        #p graph.adj_matrix[path[i].to_s][path[i+1].to_s]['value']
-
-
-        temp = {}
-        temp["source"] = path[i]
-        temp["destination"] = path[i+1]
-        temp["label"] = graph.adj_matrix[path[i]][path[i+1]]['label']
-        temp["value"] = graph.adj_matrix[path[i]][path[i+1]]['value']
-        @json_test.push(temp)
-
-        # if sentinel.eql? true
-        #   graph.model.add_edge(path[i], path[i+1], color: "green", label: graph.adj_matrix[path[i]][path[i+1]]['label'])
-        # elsif sentinel.eql? false
-        #   graph.model.add_edge(path[i], path[i+1], color: "red", label: graph.adj_matrix[path[i]][path[i+1]]['label'])
-        # end
-      end
-    end
-    graph.output_model('output/web_navigation.png')
-    # File.open("output/web_navigation.json","w") do |f|
-    #   f.write(@json_test.to_json)
-    # end
-    @json_test = @json_test.uniq
-
-    model_test = ModelBuilder.new
-    @json_test.each do |x|
-      next if x['value'].eql? nil
-      p x
-      model_test.add_edge(x['source'], x['destination'], x['value'], x['label'])
-    end
-    model_test.output_png('output/json_web_navigation.png')
+    graph.traverse_graph(base_page, 'example')
 
   end
 end

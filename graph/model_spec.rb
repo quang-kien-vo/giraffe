@@ -1,4 +1,4 @@
-require_relative 'model_builder'
+require_relative '../lib/model/model_builder'
 require 'selenium-webdriver'
 
 
