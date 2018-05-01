@@ -2,16 +2,16 @@
 
 
 ##Directory Structure
-├── edge_definitions      
-├── lib
-├── output
-├── page_objects
-├── spec
-├── Gemfile
-├── README.md
-├── package.json
-├── .rubocop.yml
-└── .gitignore
+    ├── edge_definitions        # stores edge defintions (algorithm to traverse one edge to another)    
+    ├── lib                     # main library for generating graphs
+    ├── output                  # output files
+    ├── page_objects            # example page objects
+    ├── spec                    # tests
+    ├── Gemfile
+    ├── README.md
+    ├── package.json
+    ├── .rubocop.yml
+    └── .gitignore
 
 
 ---
