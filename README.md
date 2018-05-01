@@ -18,10 +18,8 @@
 
 ---
 Notes:
-* Right now most of the usable code is in lib/graph.rb
 * Working example is spec/graph_spec.rb which outputs to output folder
 * graph/ folder contains experiments with different graph algorithms I was using to test but may not necessarily be used in the final framework.
-* lib/node.rb currently is not being used
 
 ## TODO:
 ### Necessary
