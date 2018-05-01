@@ -54,7 +54,15 @@ class Graph
         break if @adj_matrix[path[i]][path[i + 1]].eql? nil
 
         @adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function')
-        @adj_matrix[path[i]][path[i + 1]]['value'] = definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function'))
+        begin
+          definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function'))
+          @adj_matrix[path[i]][path[i + 1]]['value'] = true
+        rescue Exception => e
+          # unless @adj_matrix[path[i]][path[i + 1]]['value'] = false
+          #   @adj_matrix[path[i]][path[i + 1]]['label'] = @adj_matrix[path[i]][path[i + 1]]['label'].concat(" \nError: #{e.message}")
+          # end
+          @adj_matrix[path[i]][path[i + 1]]['value'] = false
+        end
 
         temp = {}
         temp['source'] = path[i]

@@ -23,7 +23,7 @@ Notes:
 
 ## TODO:
 ### Necessary
-- [ ] Exception Handling (Currently Not Implemented)
+- [x] Exception Handling (Currently Not Implemented)
 - [ ] Finalize API
 - [ ] Package Library As Gem
 

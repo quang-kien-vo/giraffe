@@ -14,30 +14,26 @@ class BasePage
   def navigate_to_google
     @driver.get('https://www.google.com/')
     puts 'https://www.google.com/'
-    true
   end
 
   def navigate_to_amazon
     @driver.get('https://www.amazon.com/')
     puts 'https://www.amazon.com/'
-    true
   end
 
   def navigate_to_slickdeals
     @driver.get('https://slickdeals.net/')
     puts 'https://slickdeals.net/'
-    false
+    raise 'error navigating to website'
   end
 
   def navigate_to_frys
     @driver.get('https://www.frys.com/')
     puts 'https://www.frys.com/'
-    true
   end
 
   def navigate_to_bing
     @driver.get('https://www.bing.com/')
     puts 'https://www.bing.com/'
-    true
   end
 end
