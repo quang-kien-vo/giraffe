@@ -59,6 +59,7 @@ class Graph
           definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function'))
           @adj_matrix[path[i]][path[i + 1]]['value'] = true
         rescue RuntimeError => e
+          puts "ERROR: #{e.message}"
           # unless @adj_matrix[path[i]][path[i + 1]]['value'] = false
           #   appended_error = @adj_matrix[path[i]][path[i + 1]]['label'].concat(" \nError: #{e.message}")
           #   @adj_matrix[path[i]][path[i + 1]]['label'] = appended_error
