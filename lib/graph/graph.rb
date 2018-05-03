@@ -1,5 +1,5 @@
 require 'json'
-require 'graphviz'
+require 'ruby-graphviz'
 require 'model/model_builder'
 
 # abstraction of a graph
