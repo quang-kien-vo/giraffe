@@ -44,6 +44,7 @@ class Graph
   def traverse_graph(definitions, result_name)
     json_result = []
     all_paths = find_all_paths_from_node('start')
+    all_paths = remove_subarrays(all_paths)
 
     all_paths.each do |path|
       p "path: #{path}"
@@ -102,5 +103,34 @@ class Graph
     @graph[source].each do |v|
       find_paths(v, destination, result, &bl) unless result.include?(v)
     end
+  end
+
+  def is_subarray(array1, array2)
+    @temp_array1 = array1.join("")
+    @temp_array2 = array2.join("")
+
+    if @temp_array1.eql? @temp_array2
+      return false
+    end
+    return @temp_array1.include? @temp_array2
+  end
+
+  def remove_subarrays(all_paths)
+    temp_array = Array.new(all_paths.length, 0)
+    all_paths.each do |path|
+      (0..all_paths.length-1).each do |i|
+        if is_subarray(path, all_paths[i])
+          temp_array[i] = 1
+        end
+      end
+    end
+
+    new_temp_array = []
+    temp_array.each do |i|
+      if temp_array[i].eql? 1
+        new_temp_array.push(all_paths[i])
+      end
+    end
+    all_paths - new_temp_array
   end
 end
