@@ -39,3 +39,22 @@ describe 'creates graph' do
     graph.traverse_graph(base_page, 'example')
   end
 end
+
+describe '[CAMS] flow' do
+  context 'Credit Application Flow' do
+    let(:graph) { Graph.new }
+    let(:base_page) { BasePage.instance }
+
+    it 'creates username and logs in' do
+      graph.add_edge('start', 'Created User', 'say_hello', 'create user')
+      graph.add_edge('Created User', 'Logged In', 'say_hello', 'log in')
+      graph.add_edge('Logged In', 'Select New Make', 'say_hello', 'select new make')
+      graph.add_edge('Logged In', 'Select Used Make', 'say_hello', 'select used make')
+      graph.add_edge('Select New Make', 'Select New Model', 'say_hello', 'select new model')
+      graph.add_edge('Select Used Make', 'Select Used Model', 'say_hello', 'select used model')
+      graph.traverse_graph(base_page, 'example')
+    end
+  end
+end
+
+

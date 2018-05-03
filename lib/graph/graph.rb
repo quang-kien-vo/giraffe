@@ -43,8 +43,10 @@ class Graph
   # definitions will be the algorithm page, which includes
   def traverse_graph(definitions, result_name)
     json_result = []
-    all_paths = find_all_paths_from_node('start')
-    all_paths = remove_subarrays(all_paths)
+    temp_array = find_all_paths_from_node('start')
+    all_paths = remove_subarrays(temp_array)
+    p "allpaths"
+    p all_paths
 
     all_paths.each do |path|
       p "path: #{path}"
@@ -116,6 +118,7 @@ class Graph
   end
 
   def remove_subarrays(all_paths)
+    all_paths = all_paths.uniq
     temp_array = Array.new(all_paths.length, 0)
     all_paths.each do |path|
       (0..all_paths.length-1).each do |i|
@@ -126,11 +129,13 @@ class Graph
     end
 
     new_temp_array = []
-    temp_array.each do |i|
-      if temp_array[i].eql? 1
+
+    (0..temp_array.length-1).each do |i|
+      if temp_array[i].eql? 0
         new_temp_array.push(all_paths[i])
+        next
       end
     end
-    all_paths - new_temp_array
+    new_temp_array
   end
 end

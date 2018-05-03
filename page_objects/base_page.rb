@@ -37,4 +37,8 @@ class BasePage
     @driver.get('https://www.bing.com/')
     puts 'https://www.bing.com/'
   end
+
+  def say_hello
+    p "hello"
+  end
 end
