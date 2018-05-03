@@ -106,8 +106,8 @@ class Graph
   end
 
   def is_subarray(array1, array2)
-    @temp_array1 = array1.join("")
-    @temp_array2 = array2.join("")
+    @temp_array1 = array1.join("").gsub(/\s+/, "")
+    @temp_array2 = array2.join("").gsub(/\s+/, "")
 
     if @temp_array1.eql? @temp_array2
       return false
