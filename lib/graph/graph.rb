@@ -2,6 +2,7 @@ require 'json'
 require 'graphviz'
 require 'model/model_builder'
 
+# abstraction of a graph
 class Graph
   attr_accessor :graph, :adj_matrix, :model
 
@@ -57,9 +58,10 @@ class Graph
         begin
           definitions.send(@adj_matrix.fetch(path[i]).fetch(path[i + 1]).fetch('function'))
           @adj_matrix[path[i]][path[i + 1]]['value'] = true
-        rescue Exception => e
+        rescue RuntimeError => e
           # unless @adj_matrix[path[i]][path[i + 1]]['value'] = false
-          #   @adj_matrix[path[i]][path[i + 1]]['label'] = @adj_matrix[path[i]][path[i + 1]]['label'].concat(" \nError: #{e.message}")
+          #   appended_error = @adj_matrix[path[i]][path[i + 1]]['label'].concat(" \nError: #{e.message}")
+          #   @adj_matrix[path[i]][path[i + 1]]['label'] = appended_error
           # end
           @adj_matrix[path[i]][path[i + 1]]['value'] = false
         end

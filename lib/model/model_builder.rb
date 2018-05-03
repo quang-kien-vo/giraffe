@@ -1,5 +1,6 @@
 require 'graphviz'
 
+# responsible for creating the final diagram
 class ModelBuilder
   attr_accessor :graph
 
@@ -30,6 +31,7 @@ class ModelBuilder
   def try_condition(condition)
     condition
   rescue RuntimeError => e
+    puts e.message
     false
   end
 end

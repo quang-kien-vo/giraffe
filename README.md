@@ -25,7 +25,7 @@ Notes:
 ### Necessary
 - [x] Exception Handling (Currently Not Implemented)
 - [ ] Finalize API
-- [ ] Package Library As Gem
+- [x] Package Library As Gem
 
 ### Optimization
 - [ ] Find subarrays within paths to optimize possible paths

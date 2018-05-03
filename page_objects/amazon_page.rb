@@ -1,6 +1,7 @@
 require 'singleton'
 require 'selenium-webdriver'
 
+# sample page object
 class AmazonPage
   include Singleton
 
