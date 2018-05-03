@@ -29,7 +29,7 @@ Notes:
 - [ ] Take care of instances where there are multiple paths between two nodes
 
 ### Optimization
-- [ ] Find subarrays within paths to optimize possible paths
+- [x] Find subarrays within paths to optimize possible paths
 - [ ] Find more suitable all paths algorithm which uses adjacent matrix and directed graph (currently using undirected graph)
 - [ ] Add Observe Pattern to watch changes in adjacency matrix, and redraw on change (tried not really what I expected)
 
