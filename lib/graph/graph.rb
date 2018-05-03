@@ -45,8 +45,6 @@ class Graph
     json_result = []
     temp_array = find_all_paths_from_node('start')
     all_paths = remove_subarrays(temp_array)
-    p "allpaths"
-    p all_paths
 
     all_paths.each do |path|
       p "path: #{path}"
