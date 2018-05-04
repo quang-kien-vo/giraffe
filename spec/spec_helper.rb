@@ -1,2 +1,2 @@
 require 'rspec'
-require 'graphviz'
+require 'ruby-graphviz'
