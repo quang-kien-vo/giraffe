@@ -30,7 +30,7 @@ class Graph
   end
 
   # definitions will be the algorithm page, which includes
-  def traverse_graph(definitions, result_name)
+  def traverse_graph(definitions, file_name)
     json_result = []
     all_paths = find_all_paths_from_node('start')
     all_paths = remove_subarrays(all_paths)
@@ -66,7 +66,7 @@ class Graph
         json_result.push(temp)
       end
     end
-    build_model(json_result, result_name)
+    build_model(json_result, file_name)
   end
 
   def build_model(json_model, file_name)
