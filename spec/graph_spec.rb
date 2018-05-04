@@ -36,7 +36,7 @@ describe 'creates graph' do
     # graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
     # graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
 
-    graph.traverse_graph(base_page, 'example')
+    graph.traverse_graph(base_page, 'website')
   end
 end
 
@@ -56,5 +56,3 @@ describe '[CAMS] flow' do
     end
   end
 end
-
-

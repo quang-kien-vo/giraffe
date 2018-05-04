@@ -39,6 +39,6 @@ class BasePage
   end
 
   def say_hello
-    p "hello"
+    p 'hello'
   end
 end

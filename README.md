@@ -24,7 +24,7 @@ Notes:
 ## TODO:
 ### Necessary
 - [x] Exception Handling (Currently Not Implemented)
-- [ ] Finalize API
+- [x] Finalize API
 - [x] Package Library As Gem
 - [ ] Take care of instances where there are multiple paths between two nodes
 
