@@ -31,9 +31,9 @@ describe 'creates graph' do
     graph.add_edge('google', 'slickdeals', 'navigate_to_slickdeals', 'navigated to slickdeals')
     graph.add_edge('amazon', 'bing', 'navigate_to_bing', 'navigated to bing')
 
-    #graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
-    #graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
-    #graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
+    graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
+    graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
+    graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
 
     graph.traverse_graph('start', base_page, 'website')
   end
@@ -55,3 +55,25 @@ describe '[CAMS] flow' do
     end
   end
 end
+
+
+describe 'random' do
+
+  let(:graph) { Graph.new }
+  let(:edge_definition) {BasePage.instance}
+
+  context 'create' do
+    it 'login model' do
+      graph.add_edge('Start', 'On Boarding Screen', 'say_hello', 'Start App')
+      graph.add_edge('On Boarding Screen', 'Navigation Screen', 'say_hello', 'Skip On Boarding')
+      graph.add_edge('Navigation Screen', 'Account Screen', 'say_hello', 'Press Account')
+      graph.add_edge('Account Screen', 'Log In Screen', 'say_hello', 'Press Login Button')
+      graph.add_edge('Log In Screen', 'Terms Screen', 'say_hello', 'Login')
+      graph.add_edge('Terms Screen', 'Profile Screen', 'say_hello', 'Agree To Terms')
+      graph.add_edge('Profile Screen', 'Account Screen', 'say_hello', 'Save Profile')
+
+      graph.print_all_nodes
+      graph.traverse_graph('Start',edge_definition, 'example')
+  end
+  end
+  end

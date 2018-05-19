@@ -65,7 +65,9 @@ class Graph
         temp['value'] = @adj_matrix[path[i]][path[i + 1]]['value']
         json_result.push(temp)
       end
+      build_model(json_result, file_name)
     end
+    p json_result
     build_model(json_result, file_name)
   end
 
