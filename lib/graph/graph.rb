@@ -30,9 +30,9 @@ class Graph
   end
 
   # definitions will be the algorithm page, which includes
-  def traverse_graph(definitions, file_name)
+  def traverse_graph(start_node_name, definitions, file_name)
     json_result = []
-    all_paths = find_all_paths_from_node('start')
+    all_paths = find_all_paths_from_node(start_node_name)
     all_paths = remove_subarrays(all_paths)
 
     all_paths.each do |path|

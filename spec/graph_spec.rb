@@ -24,19 +24,18 @@ describe 'creates graph' do
   let(:graph) { Graph.new }
   let(:base_page) { BasePage.instance }
 
-  it 'should create the proper img for adj_matrix' do
+  it 'should create the proper img for adj_list' do
     graph.add_edge('start', 'google', 'navigate_to_google', 'navigated to google')
     graph.add_edge('google', 'frys', 'navigate_to_frys', 'navigated to frys')
     graph.add_edge('google', 'amazon', 'navigate_to_amazon', 'navigated to amazon')
     graph.add_edge('google', 'slickdeals', 'navigate_to_slickdeals', 'navigated to slickdeals')
     graph.add_edge('amazon', 'bing', 'navigate_to_bing', 'navigated to bing')
-    # graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
-    # graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
-    # graph.add_edge('frys', 'amazon',"navigate_to_amazon", "navigated to amazon")
-    # graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
-    # graph.add_edge('bing', 'slickdeals',"navigate_to_slickdeals", "navigated to slickdeals")
 
-    graph.traverse_graph(base_page, 'website')
+    #graph.add_edge('google', 'bing', "navigate_to_bing", "navigated to bing")
+    #graph.add_edge('frys', 'google', "navigate_to_google", "navigated to google")
+    #graph.add_edge('bing', 'amazon',"navigate_to_amazon", "navigated to amazon")
+
+    graph.traverse_graph('start', base_page, 'website')
   end
 end
 
@@ -52,7 +51,7 @@ describe '[CAMS] flow' do
       graph.add_edge('Logged In', 'Select Used Make', 'say_hello', 'select used make')
       graph.add_edge('Select New Make', 'Select New Model', 'say_hello', 'select new model')
       graph.add_edge('Select Used Make', 'Select Used Model', 'say_hello', 'select used model')
-      graph.traverse_graph(base_page, 'example')
+      graph.traverse_graph('start',base_page, 'example')
     end
   end
 end
