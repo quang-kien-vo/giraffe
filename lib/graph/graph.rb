@@ -67,7 +67,6 @@ class Graph
       end
       build_model(json_result, file_name)
     end
-    p json_result
     build_model(json_result, file_name)
   end
 
